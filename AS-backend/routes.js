@@ -123,6 +123,50 @@ router.post('/cadastro', async (req, res) => {
   }
 });
 
+router.post('/cadastro-produto', async (req, res) => {
+  const { nome, preco, estoque } = req.body;
+
+  try {
+    const produtoExists = await db('produtos').where({ nome }).first();
+    if (produtoExists) {
+      return res.status(400).json({ erro: 'Este produto já está cadastrado.' });
+    }
+
+    const [newProdutoId] = await db('produtos').insert({
+      nome,
+      preco,
+      estoque
+    });
+
+    res.status(201).json({ mensagem: 'Produto cadastrado com sucesso!', id: newProdutoId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: 'Erro interno ao cadastrar o produto.' });
+  }
+});
+
+router.get('/produtos/:id', verificarToken, async (req, res) => {
+  const produtoId = req.params.id;
+
+  try {
+    const produto = await db('produtos')
+      .where({ id: produtoId })
+      .select('id', 'nome', 'preco', 'estoque')
+      .first(); 
+
+    if (!produto) {
+      return res.status(404).json({ erro: 'Produto não encontrado.' });
+    }
+
+    res.json(produto);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: 'Erro ao buscar o produto.' });
+  }
+});
+
+
+
 /**
  * ==========================================
  * ROTA 4: LOGIN DE USUÁRIOS (PÚBLICA)
