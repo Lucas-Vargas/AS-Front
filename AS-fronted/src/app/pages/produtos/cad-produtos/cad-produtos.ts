@@ -3,10 +3,11 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { ProdutoService } from '../../../services/produtos/produto-service';
 import { CommonModule } from '@angular/common';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-cad-produtos',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, CdkDrag],
   templateUrl: './cad-produtos.html',
   styleUrl: './cad-produtos.css',
 })

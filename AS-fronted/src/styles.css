@@ -1,1 +1,271 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --xp-blue: #245edb;
+  --xp-blue-dark: #0b3fbd;
+  --xp-blue-light: #5f9dff;
+  --xp-green: #3f9b2f;
+  --xp-green-dark: #247318;
+  --xp-red: #c7372f;
+  --xp-panel: #ece9d8;
+  --xp-panel-light: #fffdf0;
+  --xp-text: #1d1d1d;
+  --xp-muted: #5f5f5f;
+  --xp-border-dark: #404040;
+  --xp-border-mid: #808080;
+  --xp-border-light: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--xp-text);
+  font-family: Tahoma, Verdana, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  background:
+    linear-gradient(180deg, #68a8ff 0%, #3a82df 48%, #1c5bbb 49%, #2e8b42 100%);
+  background-attachment: fixed;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+.xp-button {
+  min-height: 28px;
+  padding: 4px 14px;
+  color: #111;
+  background: linear-gradient(180deg, #fffdf7 0%, #ece9d8 48%, #d8d2bd 100%);
+  border: 2px solid;
+  border-color: var(--xp-border-light) var(--xp-border-dark) var(--xp-border-dark) var(--xp-border-light);
+  border-radius: 0;
+  box-shadow: inset -1px -1px 0 #aca899, inset 1px 1px 0 #ffffff;
+  cursor: pointer;
+}
+
+button:hover,
+.xp-button:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f1d2 45%, #e8d897 100%);
+}
+
+button:active,
+.xp-button:active {
+  border-color: var(--xp-border-dark) var(--xp-border-light) var(--xp-border-light) var(--xp-border-dark);
+  box-shadow: inset 1px 1px 0 #aca899;
+  transform: translate(1px, 1px);
+}
+
+button:disabled {
+  color: #8b8b8b;
+  background: #d6d2bf;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input {
+  width: 100%;
+  min-height: 30px;
+  padding: 5px 7px;
+  color: #111;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: #7f9db9 #ffffff #ffffff #7f9db9;
+  border-radius: 0;
+  outline: none;
+}
+
+input:focus {
+  border-color: #1f5fdb #dbe8ff #dbe8ff #1f5fdb;
+  box-shadow: inset 0 0 0 1px #c7ddff;
+}
+
+a {
+  color: #003c9f;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #b00000;
+}
+
+.xp-desktop {
+  min-height: 100vh;
+  padding: 34px 16px;
+}
+
+.xp-window {
+  width: min(94vw, 620px);
+  margin: 28px auto;
+  color: var(--xp-text);
+  background: var(--xp-panel);
+  border: 2px solid;
+  border-color: var(--xp-border-light) var(--xp-border-dark) var(--xp-border-dark) var(--xp-border-light);
+  border-radius: 0;
+  box-shadow:
+    inset -1px -1px 0 #aca899,
+    inset 1px 1px 0 #ffffff,
+    5px 6px 0 rgba(0, 0, 0, 0.28);
+}
+
+.xp-window[cdkdrag],
+.xp-window.cdk-drag {
+  cursor: move;
+}
+
+.xp-window.cdk-drag-dragging {
+  box-shadow:
+    inset -1px -1px 0 #aca899,
+    inset 1px 1px 0 #ffffff,
+    8px 10px 0 rgba(0, 0, 0, 0.32);
+}
+
+.xp-window--auth {
+  width: min(94vw, 420px);
+}
+
+.xp-window--wide {
+  width: min(96vw, 760px);
+}
+
+.xp-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+  padding: 4px 6px 4px 10px;
+  color: #ffffff;
+  background: linear-gradient(180deg, var(--xp-blue-light) 0%, var(--xp-blue) 42%, var(--xp-blue-dark) 100%);
+  border-bottom: 1px solid #08398f;
+  user-select: none;
+}
+
+.xp-titlebar h1,
+.xp-titlebar h2,
+.xp-titlebar h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.xp-window-controls {
+  display: flex;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+.xp-window-control {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  background: linear-gradient(180deg, #7db8ff 0%, #2e71df 52%, #174aa8 100%);
+  border: 1px solid #ffffff;
+  box-shadow: inset -1px -1px 0 #123a80;
+}
+
+.xp-window-control--close {
+  background: linear-gradient(180deg, #ff9a86 0%, #df4f3b 52%, #9b1c13 100%);
+}
+
+.xp-body {
+  padding: 18px;
+  border-top: 1px solid #ffffff;
+}
+
+.xp-section-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.xp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  margin-bottom: 16px;
+  background: #d8d2bd;
+  border: 1px solid;
+  border-color: #ffffff #8a8678 #8a8678 #ffffff;
+}
+
+.xp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.xp-error {
+  display: block;
+  padding: 7px 9px;
+  color: #8c0000;
+  background: #fff1ef;
+  border: 1px solid #d7796f;
+}
+
+.xp-list {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.xp-list-item,
+.xp-empty {
+  padding: 10px;
+  background: var(--xp-panel-light);
+  border: 1px solid;
+  border-color: #ffffff #8a8678 #8a8678 #ffffff;
+}
+
+.xp-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.xp-button--danger {
+  color: #ffffff;
+  background: linear-gradient(180deg, #ff8c7a 0%, #d74334 52%, #9d1d13 100%);
+  border-color: #ffd7d0 #6f120c #6f120c #ffd7d0;
+}
+
+@media (max-width: 560px) {
+  .xp-desktop {
+    padding: 16px 10px;
+  }
+
+  .xp-window {
+    margin: 14px auto;
+  }
+
+  .xp-body {
+    padding: 14px;
+  }
+
+  .xp-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .xp-toolbar button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,24 @@
+#homeDiv {
+  display: inline-grid;
+  place-items: center;
+  min-width: 84px;
+  min-height: 72px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 1px 1px 0 #00356f;
+}
+
+#homeDiv::before {
+  content: "";
+  width: 34px;
+  height: 28px;
+  margin-bottom: 6px;
+  background: linear-gradient(180deg, #fff6bf 0%, #f4cf52 55%, #c99613 100%);
+  border: 2px solid;
+  border-color: #fff8d6 #8f6b00 #8f6b00 #fff8d6;
+}
+
+#homeDiv p {
+  margin: 0;
+}

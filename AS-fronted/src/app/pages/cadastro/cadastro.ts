@@ -3,12 +3,14 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
-  templateUrl: './cadastro.html'
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, CdkDrag], // Importa o ReactiveFormsModule
+  templateUrl: './cadastro.html',
+  styleUrl: './cadastro.css'
 })
 export class Cadastro {
   cadastroForm: FormGroup; // Declara o formulário

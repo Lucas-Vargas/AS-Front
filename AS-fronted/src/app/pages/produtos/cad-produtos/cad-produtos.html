@@ -1,26 +1,36 @@
-<div style="max-width: 400px; margin: 50px auto; text-align: center;">
-  <h2>Criar Conta</h2>
+<main class="xp-desktop cad-produtos-page">
+<div class="xp-window xp-window--auth" cdkDrag>
+  <div class="xp-titlebar">
+    <h2>Cadastrar Produto</h2>
+    <div class="xp-window-controls" aria-hidden="true">
+      <span class="xp-window-control">_</span>
+      <span class="xp-window-control">[ ]</span>
+      <span class="xp-window-control xp-window-control--close">X</span>
+    </div>
+  </div>
+
+  <div class="xp-body">
   <!-- Conecta o formulário HTML ao FormGroup do TS -->
-  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 15px;">
+  <form class="xp-form" [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
     
-    <input type="email" formControlName="nome" placeholder="Nome do produto" />
+    <input type="text" formControlName="nome" placeholder="Nome do produto" />
     <!-- Feedback visual de erro -->
    @if (cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched) {
-      <small style="color: red; text-align: left;">
+      <small class="xp-error">
         Nome inválido ou vazio.
       </small>
     }
 
     <input type="text" formControlName="preco" placeholder="Preço do produto" />
     @if (cadastroForm.get('preco')?.invalid && cadastroForm.get('preco')?.touched) {
-      <small style="color: red;">
+      <small class="xp-error">
         O preço é inválido ou vazio.
       </small>
     }
 
     <input type="text" formControlName="estoque" placeholder="Estoque do produto" />
     @if (cadastroForm.get('estoque')?.invalid && cadastroForm.get('estoque')?.touched) {
-      <small style="color: red;">
+      <small class="xp-error">
         O estoque é inválido ou vazio.
       </small>
     }
@@ -28,6 +38,11 @@
     <!-- Botão só fica clicável se o formulário for válido -->
     <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
   </form>
-  <br>
-  <a routerLink="/">Voltar para Home</a>
+  <nav class="xp-links">
+    <a routerLink="/pesquisa_produto">Voltar para Produtos</a>
+    <span>|</span>
+    <a routerLink="/">Voltar para Home</a>
+  </nav>
+  </div>
 </div>
+</main>

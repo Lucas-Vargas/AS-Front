@@ -1,0 +1,16 @@
+.produtos-page .xp-list {
+  max-height: 46vh;
+  overflow: auto;
+  padding: 2px;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: #7f9db9 #ffffff #ffffff #7f9db9;
+}
+
+.produtos-page .xp-toolbar {
+  justify-content: flex-end;
+}
+
+.produtos-page .xp-error {
+  margin-bottom: 12px;
+}

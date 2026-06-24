@@ -1,3 +1,14 @@
-#loginDiv{
-    background-color: rgba(0,0,255,0.4);
+.login-page {
+  display: grid;
+  align-content: start;
+}
+
+#loginDiv {
+  text-align: center;
+}
+
+#appHome {
+  display: block;
+  width: min(94vw, 420px);
+  margin: 0 auto;
 }

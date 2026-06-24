@@ -1,40 +1,46 @@
-<!-- src/app/pages/dashboard/dashboard.component.html -->
-
-<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;" cdkDrag>
-  
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
-    <h2>Painel de Controle (Dashboard)</h2>
-    <!-- Botão que chama a função de deslogar -->
-     <button [routerLink]="['/cadastro_produto']">Produtos</button>
+<main class="xp-desktop produtos-page">
+<div class="xp-window xp-window--wide" cdkDrag>
+  <div class="xp-titlebar">
+    <h2>Pesquisa de Produtos</h2>
+    <div class="xp-window-controls" aria-hidden="true">
+      <span class="xp-window-control">_</span>
+      <span class="xp-window-control">[ ]</span>
+      <span class="xp-window-control xp-window-control--close">X</span>
+    </div>
   </div>
 
-  <div style="margin-top: 20px;">
-    <h3>Usuários Cadastrados no Banco de Dados:</h3>
+  <div class="xp-body">
+    <div class="xp-toolbar">
+      <button [routerLink]="['/cadastro_produto']">Novo Produto</button>
+    </div>
+
+    <h3 class="xp-section-title">Produtos Cadastrados no Banco de Dados:</h3>
 
     <!-- Se houver alguma mensagem de erro de permissão, mostramos aqui -->
     @if (mensagemErro) {
-      <div style="background-color: #ffdddd; color: red; padding: 10px; border-radius: 5px;">
+      <div class="xp-error">
         {{ mensagemErro }}
       </div>
     }
 
     <!-- Estrutura de repetição moderna do Angular (@for) -->
-    <ul style="list-style-type: none; padding: 0;">
+    <ul class="xp-list">
       @for (produto of listaDeProdutos; track produto.id) {
         
         <!-- Para cada usuário na lista, criamos um item visual -->
-        <li style="background-color: #f4f4f4; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
+        <li class="xp-list-item">
           <strong>ID:</strong> {{ produto.id }} <br>
-          <strong>E-mail:</strong> {{ produto.nome }}
+          <strong>Nome:</strong> {{ produto.nome }}
         </li>
         
       } @empty {
         
         <!-- O @empty aparece automaticamente se a listaDeUsuarios estiver vazia -->
-        <p>Carregando usuários ou nenhum usuário encontrado...</p>
+        <p class="xp-empty">Carregando produtos ou nenhum produto encontrado...</p>
         
       }
     </ul>
   </div>
 
 </div>
+</main>
