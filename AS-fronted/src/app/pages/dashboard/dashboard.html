@@ -1,6 +1,6 @@
 <!-- src/app/pages/dashboard/dashboard.component.html -->
 
-<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;">
+<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif; background-color: red" cdkDrag>
   
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
     <h2>Painel de Controle (Dashboard)</h2>
@@ -8,6 +8,7 @@
     <button (click)="fazerLogout()" style="padding: 5px 15px; background-color: #ff4c4c; color: white; border: none; cursor: pointer;">
       Sair do Sistema
     </button>
+    <button [routerLink]="['/pesquisa_produto']">Produtos</button>
   </div>
 
   <div style="margin-top: 20px;">

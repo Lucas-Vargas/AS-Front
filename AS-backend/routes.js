@@ -165,6 +165,15 @@ router.get('/produtos/:id', verificarToken, async (req, res) => {
   }
 });
 
+router.get('/produtos', verificarToken, async (req, res) => {
+  try {
+    const produtos = await db('produtos').select('*');
+    res.json(produtos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: 'Erro ao buscar produtos.' });
+  }
+});
 
 
 /**

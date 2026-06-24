@@ -17,7 +17,7 @@ export class ProdutoService {
   }
 
   listarProdutos(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cadastro-produto`);
+    return this.http.get(`${this.apiUrl}/produtos`);
   }
 
 }

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import {CdkDrag} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
-  imports: [CdkDrag],
+  imports: [],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

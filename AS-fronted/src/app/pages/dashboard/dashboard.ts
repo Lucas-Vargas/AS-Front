@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import {CdkDrag} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [RouterLink, CdkDrag],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })

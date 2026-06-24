@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: '', component: Login }, // Rota inicial (Pública)
   { path: 'login', component: Login }, // (Pública)
   { path: 'cadastro', component: Cadastro }, // (Pública)
+  { path: 'home', component: Home},
   
   // O AuthGuard protege esta rota. Só entra se retornar true!
   { path: 'dashboard', component: Dashboard, canActivate: [AuthGuard] }, 

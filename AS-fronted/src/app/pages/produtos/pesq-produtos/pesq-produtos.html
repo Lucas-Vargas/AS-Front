@@ -1,13 +1,11 @@
 <!-- src/app/pages/dashboard/dashboard.component.html -->
 
-<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;">
+<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;" cdkDrag>
   
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
     <h2>Painel de Controle (Dashboard)</h2>
     <!-- Botão que chama a função de deslogar -->
-    <button (click)="fazerLogout()" style="padding: 5px 15px; background-color: #ff4c4c; color: white; border: none; cursor: pointer;">
-      Sair do Sistema
-    </button>
+     <button [routerLink]="['/cadastro_produto']">Produtos</button>
   </div>
 
   <div style="margin-top: 20px;">
@@ -22,12 +20,12 @@
 
     <!-- Estrutura de repetição moderna do Angular (@for) -->
     <ul style="list-style-type: none; padding: 0;">
-      @for (usuario of listaDeUsuarios; track usuario.id) {
+      @for (produto of listaDeProdutos; track produto.id) {
         
         <!-- Para cada usuário na lista, criamos um item visual -->
         <li style="background-color: #f4f4f4; margin-bottom: 10px; padding: 10px; border-radius: 5px;">
-          <strong>ID:</strong> {{ usuario.id }} <br>
-          <strong>E-mail:</strong> {{ usuario.email }}
+          <strong>ID:</strong> {{ produto.id }} <br>
+          <strong>E-mail:</strong> {{ produto.nome }}
         </li>
         
       } @empty {
