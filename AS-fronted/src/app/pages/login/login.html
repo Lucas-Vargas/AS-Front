@@ -1,4 +1,4 @@
-<div style="max-width: 400px; margin: 50px auto; text-align: center;">
+<div id="loginDiv" style="max-width: 400px; margin: 50px auto; text-align: center;" cdkDrag>
   <h2>Fazer Login</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 15px;">
     @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
@@ -13,4 +13,7 @@
   </form>
   <br>
   <a routerLink="/cadastro">Não tem conta? Cadastre-se</a> | <a routerLink="/">Home</a>
+  
 </div>
+
+<app-home id="appHome"></app-home>

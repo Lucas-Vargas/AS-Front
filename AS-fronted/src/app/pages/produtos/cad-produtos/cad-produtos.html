@@ -1,1 +1,33 @@
-<p>cad-produtos works!</p>
+<div style="max-width: 400px; margin: 50px auto; text-align: center;">
+  <h2>Criar Conta</h2>
+  <!-- Conecta o formulário HTML ao FormGroup do TS -->
+  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 15px;">
+    
+    <input type="email" formControlName="nome" placeholder="Nome do produto" />
+    <!-- Feedback visual de erro -->
+   @if (cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched) {
+      <small style="color: red; text-align: left;">
+        Nome inválido ou vazio.
+      </small>
+    }
+
+    <input type="text" formControlName="preco" placeholder="Preço do produto" />
+    @if (cadastroForm.get('preco')?.invalid && cadastroForm.get('preco')?.touched) {
+      <small style="color: red;">
+        O preço é inválido ou vazio.
+      </small>
+    }
+
+    <input type="text" formControlName="estoque" placeholder="Estoque do produto" />
+    @if (cadastroForm.get('estoque')?.invalid && cadastroForm.get('estoque')?.touched) {
+      <small style="color: red;">
+        O estoque é inválido ou vazio.
+      </small>
+    }
+
+    <!-- Botão só fica clicável se o formulário for válido -->
+    <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
+  </form>
+  <br>
+  <a routerLink="/">Voltar para Home</a>
+</div>

@@ -3,11 +3,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
-
+import {CdkDrag} from '@angular/cdk/drag-drop';
+import { Home } from '../home/home';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, CdkDrag, Home], // Importa o ReactiveFormsModule
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
