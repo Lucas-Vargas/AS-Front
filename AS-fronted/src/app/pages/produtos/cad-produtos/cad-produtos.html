@@ -1,5 +1,5 @@
 <main class="xp-desktop cad-produtos-page">
-<div class="xp-window xp-window--auth" cdkDrag>
+<div class="xp-window xp-window--auth" cdkDrag [cdkDragFreeDragPosition]="startPosition">
   <div class="xp-titlebar">
     <h2>Cadastrar Produto</h2>
     <div class="xp-window-controls" aria-hidden="true">
@@ -8,7 +8,9 @@
       <span class="xp-window-control xp-window-control--close">X</span>
     </div>
   </div>
-
+      <div class="xp-toolbar">
+        <button class="btn-delete" (click)="fecharcad()">Fechar</button>
+  </div>
   <div class="xp-body">
   <!-- Conecta o formulário HTML ao FormGroup do TS -->
   <form class="xp-form" [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
@@ -38,11 +40,6 @@
     <!-- Botão só fica clicável se o formulário for válido -->
     <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar</button>
   </form>
-  <nav class="xp-links">
-    <a routerLink="/pesquisa_produto">Voltar para Produtos</a>
-    <span>|</span>
-    <a routerLink="/">Voltar para Home</a>
-  </nav>
   </div>
 </div>
 </main>

@@ -1,0 +1,7 @@
+/*.edit-produtos-page .xp-window {
+  text-align: center;
+}*/
+
+.edit-produtos-page .xp-toolbar {
+  justify-content: flex-end;
+}

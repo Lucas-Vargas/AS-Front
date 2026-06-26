@@ -1,0 +1,52 @@
+<main class="xp-desktop edit-produtos-page">
+  <div class="xp-window xp-window--auth" cdkDrag c>
+    <div class="xp-titlebar">
+      <h2>Editar Produto</h2>
+      <div class="xp-window-controls" aria-hidden="true">
+        <span class="xp-window-control">_</span>
+        <span class="xp-window-control">[ ]</span>
+        <span class="xp-window-control xp-window-control--close">X</span>
+      </div>
+    </div>
+
+    <div class="xp-body">
+      <div class="xp-toolbar">
+        <button class="btn-delete" (click)="fecharEdit()">Fechar</button>
+      </div>
+
+      <form class="xp-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+        <p><strong>ID:</strong>
+          <input type="text" formControlName="id" readonly></p>
+
+        <p><strong>Nome:</strong>
+          <input type="text" formControlName="nome"></p>
+
+          @if (editForm.get('nome')?.invalid && editForm.get('nome')?.touched) {
+          <small class="xp-error">
+            Por favor, insira um nome válido.
+          </small>
+        }
+
+        <p><strong>Estoque:</strong>
+          <input type="text" formControlName="estoque"></p>
+          
+        @if (editForm.get('estoque')?.invalid && editForm.get('estoque')?.touched) {
+          <small class="xp-error">
+            Por favor, insira um estoque válido.
+          </small>
+        }
+        <p><strong>Preço:</strong>
+          <input type="text" formControlName="preco"></p>
+        
+        @if (editForm.get('preco')?.invalid && editForm.get('preco')?.touched) {
+          <small class="xp-error">
+            Por favor, insira um preco válido.
+          </small>
+        }
+        
+        <button type="submit" class="btn-edit" [disabled]="editForm.invalid">Editar</button>
+      </form>
+    </div>
+  </div>
+</main>

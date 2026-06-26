@@ -19,5 +19,11 @@ export class ProdutoService {
   listarProdutos(): Observable<any> {
     return this.http.get(`${this.apiUrl}/produtos`);
   }
+  deletarProdutos(id: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete-produto`, {body: {id}});
+  }
+  editarProdutos(dados: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/editar-produto`, dados);
+  }
 
 }

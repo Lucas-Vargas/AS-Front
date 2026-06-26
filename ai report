@@ -1,0 +1,128 @@
+Do all the CSS for me.
+I want a more "squared" style, i know you like the round borders, but try to avoid it. Where you think its nice you can add them.
+Try to do a style more like windows XP, with the cdkDrag components as the windows
+
+    Done. I reworked the app into a squared Windows XP-style UI:
+    Added global XP desktop/window styling in [styles.css](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/styles.css).
+    Converted the cdkDrag panels into square XP-like windows with title bars.
+    Removed inline visual styles from the templates.
+    Added draggable window shells to cadastro and product cadastro too.
+    Styled buttons, inputs, errors, lists, toolbar areas, and the small home component.
+    Fixed product screen wording from user/email to product/name.
+    I couldn’t run npm run build because this shell has no Node/npm tooling available (npm, node, pnpm, yarn, and npx are all missing from PATH). Source sweep passed for leftover inline styles and unwanted rounded borders.
+
+
+done some changes, implement the style in the added components
+
+    Implemented the XP style on the added product edit component and the new product table bits.
+    Changed:
+    [edit-produtos.html](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/app/pages/produtos/edit-produtos/edit-produtos.html): replaced placeholder with a draggable XP window.
+    [edit-produtos.ts](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/app/pages/produtos/edit-produtos/edit-produtos.ts): added CdkDrag and RouterLink.
+    [edit-produtos.css](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/app/pages/produtos/edit-produtos/edit-produtos.css): added component-specific XP layout tweaks.
+    [styles.css](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/styles.css): added XP table styles plus edit/delete button styles.
+    [pesq-produtos.css](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/app/pages/produtos/pesq-produtos/pesq-produtos.css): made the product table scroll cleanly on narrow screens.
+    [pesq-produtos.html](/home/coitus/Documents/AS/AS-Front/AS-fronted/src/app/pages/produtos/pesq-produtos/pesq-produtos.html): fixed the empty table row colspan to match all 5 columns.
+    Also normalized the cadastro window icon back to [ ].
+    I couldn’t run the Angular build because this shell still has no node/npm/npx/pnpm/yarn available.
+
+
+const produto_editado = await db('produtos').where({ id }).update({nome, estoque, preco}) res.status(201).json({ mensagem: 'Produto editado com sucesso!', produto_id: id, produto_nome: produto_editado.nome}); Eu posso fazer isso: produto_editado.nome
+
+    Não desse jeito.
+    (decidi abandonar a ideia)
+
+essa rota está correta? (Rota de update)
+    Está quase correta, mas tem 2 ajustes importantes.
+    Ajustes:
+        if (id == null || nome == null || estoque == null || preco == null)
+        Outra coisa: para edição, o status mais correto é 200, não 201. O 201 é mais usado quando você cria algo novo.
+
+Como colocar o valor produto?.id no input. Pelo value não funciona, pois ele é definido pelo form
+
+ngOnChanges(changes: SimpleChanges): void {
+    if (changes['produto'] && this.produto) {
+      this.editForm.patchValue({
+        id: this.produto.id,
+        nome: this.produto.nome,
+        preco: this.produto.preco,
+        estoque: this.produto.estoque
+      });
+    }
+
+
+No [edit-produtos.ts](AS-Front/AS-fronted/src/app/pages/produtos/edit-produtos/edit-produtos.ts) existe um "this.produtoEditado.emit();" que tem como objetivo, ao finalizar a edição de um produto, recarregar a tabela na [pesq-produtos.ts](AS-Front/AS-fronted/src/app/pages/produtos/pesq-produtos/pesq-produtos.ts) porém não está funcionando.
+
+    Retirar a linha: this.fecharEdit();
+
+
+por que que, quando eu abro uma nova tela, para editar ou cadastrar, a minha página fica mais comprida, criando um slider lateral para abaixar, como se tivesse height: 200vhw
+
+        Isso acontece porque o componente de editar/cadastrar está sendo renderizado abaixo da tabela no fluxo normal do HTML.
+
+        @if (showEdit) {
+        <div class="modal-overlay">
+            <app-edit-produtos
+            [produto]="prod"
+            (fechar)="fecharEdit()"
+            (produtoEditado)="atualizarDepoisDeEditar()">
+            </app-edit-produtos>
+        </div>
+        }
+
+        @if (showCad) {
+        <div class="modal-overlay">
+            <app-cad-produtos
+            (fechar)="fecharCad()"
+            (produtoCadastrado)="atualizarDepoisDeCadastrar()">
+            </app-cad-produtos>
+        </div>
+        }
+
+        .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 9999;
+        }
+
+
+agora, ao abrir o editar e o cadastrar, ele bloqueia o editar, deixando apenas cadastrar clicavel
+    Isso acontece por causa do z-index e/ou porque alguma div invisível está ocupando espaço por cima da outra janela.
+    pesq-produtos.ts:
+        janelaAtiva: 'edit' | 'cad' | null = null;
+
+    Nas funções de abrir:
+        this.janelaAtiva = 'edit';
+        this.janelaAtiva = 'cad';
+
+    Crie uma função para trazer a janela para frente:
+        trazerParaFrente(janela: 'edit' | 'cad') {
+            this.janelaAtiva = janela;
+        }
+    pesq-produtos.html
+        [class.window-active]="janelaAtiva === 'edit'"
+        (mousedown)="trazerParaFrente('edit')">
+
+        [class.window-active]="janelaAtiva === 'cad'"
+        (mousedown)="trazerParaFrente('cad')">
+
+
+faça uma tela de "work in progress" no [home](AS-Front/AS-fronted/src/app/pages/home/)
+    Pronto. Transformei a home em uma tela de “Work in progress” com janela no estilo XP, ícone, mensagem, barra de progresso e botões para Dashboard e Login.
+
+
+
+
+
+
+
+
+

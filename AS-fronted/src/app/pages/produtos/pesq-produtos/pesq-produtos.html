@@ -1,46 +1,82 @@
 <main class="xp-desktop produtos-page">
-<div class="xp-window xp-window--wide" cdkDrag>
-  <div class="xp-titlebar">
-    <h2>Pesquisa de Produtos</h2>
-    <div class="xp-window-controls" aria-hidden="true">
-      <span class="xp-window-control">_</span>
-      <span class="xp-window-control">[ ]</span>
-      <span class="xp-window-control xp-window-control--close">X</span>
-    </div>
-  </div>
 
-  <div class="xp-body">
-    <div class="xp-toolbar">
-      <button [routerLink]="['/cadastro_produto']">Novo Produto</button>
+  <div class="xp-window xp-window--wide" cdkDrag>
+    <div class="xp-titlebar">
+      <h2>Pesquisa de Produtos</h2>
+      <div class="xp-window-controls" aria-hidden="true">
+        <span class="xp-window-control">_</span>
+        <span class="xp-window-control">[ ]</span>
+        <span class="xp-window-control xp-window-control--close">X</span>
+      </div>
     </div>
 
-    <h3 class="xp-section-title">Produtos Cadastrados no Banco de Dados:</h3>
+    <div class="xp-body">
+      <div class="xp-toolbar">
+        <button type="button" (click)="abrirCadastro()">Novo Produto</button>
+        <button [routerLink]="['/dashboard']">Voltar</button>
+      </div>
 
-    <!-- Se houver alguma mensagem de erro de permissão, mostramos aqui -->
-    @if (mensagemErro) {
+      <h3 class="xp-section-title">Produtos Cadastrados no Banco de Dados:</h3>
+
+      <!-- Se houver alguma mensagem de erro de permissão, mostramos aqui -->
+      @if (mensagemErro) {
       <div class="xp-error">
         {{ mensagemErro }}
       </div>
-    }
-
-    <!-- Estrutura de repetição moderna do Angular (@for) -->
-    <ul class="xp-list">
-      @for (produto of listaDeProdutos; track produto.id) {
-        
-        <!-- Para cada usuário na lista, criamos um item visual -->
-        <li class="xp-list-item">
-          <strong>ID:</strong> {{ produto.id }} <br>
-          <strong>Nome:</strong> {{ produto.nome }}
-        </li>
-        
-      } @empty {
-        
-        <!-- O @empty aparece automaticamente se a listaDeUsuarios estiver vazia -->
-        <p class="xp-empty">Carregando produtos ou nenhum produto encontrado...</p>
-        
       }
-    </ul>
-  </div>
 
-</div>
+      <!-- Estrutura de repetição moderna do Angular (@for) -->
+      <table class="xp-table">
+
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Estoque</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+
+
+        @for (produto of listaDeProdutos; track produto.id) {
+        <tr>
+          <td>{{ produto.id }}</td>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.estoque }}</td>
+          <td>{{ produto.preco }}</td>
+          <td class="xp-actions">
+            <button class="btn-edit" (click)="editarProduto(produto)">Editar</button>
+            <button class="btn-delete" (click)="excluirProduto(produto.id)">Excluir</button>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="5" class="xp-empty">
+            Carregando produtos ou nenhum produto encontrado...
+          </td>
+        </tr>
+        }
+
+      </table>
+    </div>
+
+  </div>
+  @if (showEdit) {
+  <div class="floating-window edit-window" [class.window-active]="janelaAtiva === 'edit'"
+    (mousedown)="trazerParaFrente('edit')">
+
+    <app-edit-produtos [produto]="prod" (fechar)="fecharEdit()" (produtoEditado)="atualizarDepoisDeEditar()">
+    </app-edit-produtos>
+
+  </div>
+  }
+
+  @if (showCad) {
+  <div class="floating-window cad-window" [class.window-active]="janelaAtiva === 'cad'"
+    (mousedown)="trazerParaFrente('cad')">
+
+    <app-cad-produtos (fechar)="fecharCad()" (produtoCadastrado)="atualizarDepoisDeCadastrar()">
+    </app-cad-produtos>
+
+  </div>
+  }
 </main>

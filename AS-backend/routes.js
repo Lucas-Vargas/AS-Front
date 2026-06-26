@@ -46,7 +46,7 @@ function verificarToken(req, res, next) {
     next();
   });
 }
-
+/**-------------------------   Usuario   ----------------------------------- */
 /**
  * ==========================================
  * ROTA 1: LISTAR TODOS OS USUÁRIOS (PRIVADA)
@@ -64,7 +64,6 @@ router.get('/usuarios', verificarToken, async (req, res) => {
     res.status(500).json({ erro: 'Erro ao buscar usuários.' });
   }
 });
-
 /**
  * ==========================================
  * ROTA 2: BUSCAR USUÁRIO ESPECÍFICO (PRIVADA)
@@ -92,7 +91,6 @@ router.get('/usuarios/:id', verificarToken, async (req, res) => {
     res.status(500).json({ erro: 'Erro ao buscar o usuário.' });
   }
 });
-
 /**
  * ==========================================
  * ROTA 3: CADASTRO DE USUÁRIOS (PÚBLICA)
@@ -122,7 +120,7 @@ router.post('/cadastro', async (req, res) => {
     res.status(500).json({ erro: 'Erro interno ao cadastrar o usuário.' });
   }
 });
-
+/**------------------------------------------------------------------------- */
 router.post('/cadastro-produto', async (req, res) => {
   const { nome, preco, estoque } = req.body;
 
@@ -142,6 +140,48 @@ router.post('/cadastro-produto', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ erro: 'Erro interno ao cadastrar o produto.' });
+  }
+});
+
+router.delete('/delete-produto', async (req, res) => {
+  const { id } = req.body || {};
+  console.log(JSON.stringify(req.body))
+  if (!id) {
+    return res.status(400).json({ erro: 'ID do produto é obrigatório.' });
+  }
+  try {
+    const produtoExists = await db('produtos').where({ id }).first();
+
+    if (!produtoExists) {
+      return res.status(400).json({ erro: 'Produto Inexistente' });
+    }
+    const produto_deletado = await db('produtos').where({ id }).del()
+
+    res.status(201).json({ mensagem: 'Produto deltado com sucesso!', produto:  id});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: 'Erro interno ao deletar o produto.' });
+  }
+});
+
+router.put('/editar-produto', async (req, res) => {
+  const { id, nome, estoque, preco } = req.body || {};
+  console.log(JSON.stringify(req.body))
+  if (id == null || nome == null || estoque == null || preco == null) {
+    return res.status(400).json({ erro: 'O preenchimento de todos os campos é obrigatório' });
+  }
+  try {
+    const produtoExists = await db('produtos').where({ id }).first();
+
+    if (!produtoExists) {
+      return res.status(400).json({ erro: 'Produto Inexistente' });
+    }
+    const produto_editado = await db('produtos').where({ id }).update({nome, estoque, preco})
+
+    res.status(200).json({ mensagem: 'Produto editado com sucesso!', produto_id:  id});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: 'Erro interno ao editar o produto.' });
   }
 });
 
@@ -174,6 +214,7 @@ router.get('/produtos', verificarToken, async (req, res) => {
     res.status(500).json({ erro: 'Erro ao buscar produtos.' });
   }
 });
+/**------------------------------------------------------------------------- */
 
 
 /**

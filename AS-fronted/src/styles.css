@@ -34,7 +34,9 @@ body {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -70,7 +72,9 @@ button:disabled {
   transform: none;
 }
 
-input {
+input,
+select,
+textarea {
   width: 100%;
   min-height: 30px;
   padding: 5px 7px;
@@ -85,6 +89,11 @@ input {
 input:focus {
   border-color: #1f5fdb #dbe8ff #dbe8ff #1f5fdb;
   box-shadow: inset 0 0 0 1px #c7ddff;
+}
+
+textarea {
+  min-height: 76px;
+  resize: vertical;
 }
 
 a {
@@ -233,6 +242,42 @@ a:hover {
   border-color: #ffffff #8a8678 #8a8678 #ffffff;
 }
 
+.xp-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: #7f9db9 #ffffff #ffffff #7f9db9;
+}
+
+.xp-table th,
+.xp-table td {
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: middle;
+  border: 1px solid #c6c2b4;
+}
+
+.xp-table th {
+  color: #ffffff;
+  font-weight: 700;
+  background: linear-gradient(180deg, #6ca7ff 0%, var(--xp-blue) 45%, var(--xp-blue-dark) 100%);
+}
+
+.xp-table tr:nth-child(even) td {
+  background: #f7f4e8;
+}
+
+.xp-actions {
+  min-width: 158px;
+  white-space: nowrap;
+}
+
+.xp-actions button + button {
+  margin-left: 6px;
+}
+
 .xp-links {
   display: flex;
   flex-wrap: wrap;
@@ -242,6 +287,18 @@ a:hover {
 }
 
 .xp-button--danger {
+  color: #ffffff;
+  background: linear-gradient(180deg, #ff8c7a 0%, #d74334 52%, #9d1d13 100%);
+  border-color: #ffd7d0 #6f120c #6f120c #ffd7d0;
+}
+
+.btn-edit {
+  color: #ffffff;
+  background: linear-gradient(180deg, #7ab6ff 0%, #2c6fde 52%, #1649a8 100%);
+  border-color: #dbeaff #12377d #12377d #dbeaff;
+}
+
+.btn-delete {
   color: #ffffff;
   background: linear-gradient(180deg, #ff8c7a 0%, #d74334 52%, #9d1d13 100%);
   border-color: #ffd7d0 #6f120c #6f120c #ffd7d0;

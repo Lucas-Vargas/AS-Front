@@ -1,3 +1,7 @@
+.produtos-page .xp-body {
+  overflow-x: auto;
+}
+
 .produtos-page .xp-list {
   max-height: 46vh;
   overflow: auto;
@@ -13,4 +17,28 @@
 
 .produtos-page .xp-error {
   margin-bottom: 12px;
+}
+
+.produtos-page .xp-table {
+  min-width: 640px;
+}
+.floating-window {
+  position: fixed;
+  z-index: 1000;
+  width: 500px;
+  max-width: 90vw;
+}
+
+.window-active {
+  z-index: 9999;
+}
+
+.edit-window {
+  top: 120px;
+  left: 120px;
+}
+
+.cad-window {
+  top: 160px;
+  left: 180px;
 }

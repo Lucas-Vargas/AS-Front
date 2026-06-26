@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ProdutoService } from '../../../services/produtos/produto-service';
@@ -13,7 +13,8 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 })
 export class CadProdutos {
   cadastroForm: FormGroup; // Declara o formulário
-
+  startPosition = { x: 0, y: 100 };
+  
   constructor(
     private fb: FormBuilder,
     private produtoService: ProdutoService,
@@ -27,13 +28,20 @@ export class CadProdutos {
     });
   }
 
+  @Output() fechar = new EventEmitter<void>();
+  @Output() produtoCadastrado = new EventEmitter<void>();
+
+  fecharcad(){
+    this.fechar.emit();
+  }
+
   onSubmit(): void {
     if (this.cadastroForm.valid) {
       // Pega os dados validados e envia para o Serviço
       this.produtoService.cadastrarProduto(this.cadastroForm.value).subscribe({
         next: (resposta) => {
           alert('Produto cadastrado com sucesso!');
-          this.router.navigate(['/pesquisa_produto']); // Envia para a lista de produtos
+          this.produtoCadastrado.emit();
         },
         error: (erro) => {
           alert('Erro ao cadastrar: ' + erro.error.erro);
@@ -41,4 +49,5 @@ export class CadProdutos {
       });
     }
   }
+
 }

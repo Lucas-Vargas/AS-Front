@@ -1,3 +1,44 @@
-<div id="homeDiv">
-    <p>Home</p>
-</div>
+<main class="xp-desktop home-page">
+  <div class="xp-window xp-window--wide home-window" cdkDrag>
+    <div class="xp-titlebar">
+      <h2>Home</h2>
+      <div class="xp-window-controls" aria-hidden="true">
+        <span class="xp-window-control">_</span>
+        <span class="xp-window-control">[ ]</span>
+        <span class="xp-window-control xp-window-control--close">X</span>
+      </div>
+    </div>
+
+    <div class="xp-body home-body">
+      <section class="work-panel" aria-labelledby="work-title">
+        <div class="work-icon" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div class="work-content">
+          <p class="work-kicker">Sistema AS</p>
+          <h1 id="work-title">Work in progress</h1>
+          <p class="work-copy">
+            Esta area ainda esta em desenvolvimento. Em breve, a Home vai reunir
+            atalhos, indicadores e informacoes importantes do sistema.
+          </p>
+
+          <div class="progress-box" aria-label="Progresso de desenvolvimento">
+            <div class="progress-header">
+              <span>Preparando recursos</span>
+              <strong>64%</strong>
+            </div>
+            <div class="progress-track">
+              <span></span>
+            </div>
+          </div>
+
+          <div class="xp-toolbar home-actions">
+            <button [routerLink]="['/dashboard']">Ir para Dashboard</button>
+            <button [routerLink]="['/login']">Voltar ao Login</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
