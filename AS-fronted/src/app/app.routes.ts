@@ -19,12 +19,9 @@ export const routes: Routes = [
   // Redireciona qualquer URL não mapeada para a Home
 
   //Rotas de produtos
-  { path: 'cadastro_produto', component: CadProdutos },
   { path: 'pesquisa_produto', component: PesqProdutos, canActivate: [AuthGuard] },
 
   //Rotas de orçamentos
-  {path: 'cadastro_orcamento', component: CadProdutos, canActivate: [AuthGuard]},
-  {path: 'pesquisa_orcamento', component: PesqProdutos, canActivate: [AuthGuard]},
 
   { path: '**', redirectTo: '' } 
 ];

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProdutoService } from '../../../services/produtos/produto-service';
 import { CommonModule } from '@angular/common';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-cad-produtos',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, CdkDrag],
+  imports: [ReactiveFormsModule, CommonModule, CdkDrag],
   templateUrl: './cad-produtos.html',
   styleUrl: './cad-produtos.css',
 })
